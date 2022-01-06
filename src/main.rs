@@ -1,3 +1,10 @@
+mod arguments;
+
+use clap::Parser;
+use arguments::Icecast;
+
 fn main() {
-    println!("Hello, world!");
+    let args = Icecast::parse();
+
+    println!("{}", args.port);
 }
