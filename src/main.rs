@@ -1,10 +1,11 @@
-mod arguments;
+mod terminal;
+mod kernel;
+mod documents;
 
-use clap::Parser;
-use arguments::Icecast;
+use terminal::icecast::*;
 
 fn main() {
-    let args = Icecast::parse();
+    let args: IcecastTerminal = IcecastTerminal::parse();
 
-    println!("{}", args.port);
+    println!("{}", args.get_port());
 }
