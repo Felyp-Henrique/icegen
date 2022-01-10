@@ -5,6 +5,9 @@ pub use clap::Parser;
 #[clap(about, version, author)]
 pub struct IcecastTerminal {
 
+    #[clap(long)]
+    path: String,
+
     #[clap(long, default_value = "1000")]
     num_clients: u16,
 
@@ -63,8 +66,14 @@ pub struct IcecastTerminal {
     relay_demand: String,
 }
 
+impl IcecastTerminal {
+    fn get_path(&self) -> String {
+        self.path.clone()
+    }
+}
+
 impl Icecast for IcecastTerminal {
-    
+
     fn get_num_clients(&self) -> u16 {
         self.num_clients
     }
