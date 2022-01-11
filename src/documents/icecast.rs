@@ -1,4 +1,3 @@
-use crate::kernel::context::*;
 use crate::kernel::entities::*;
 
 pub struct IcecastTera {
@@ -49,37 +48,14 @@ impl IcecastTera {
             relay_demand: icecast.get_relay_demand(),
         }
     }
+}
+
+impl Icecast for IcecastTera {
 
     fn get_path(&self) -> String {
         self.path.clone()
     }
 
-    fn to_context(&self) -> TeraContenxt {
-        let mut context = TeraContenxt::new();
-        context.insert("num_clients", &self.num_clients);
-        context.insert("num_sources", &self.num_sources);
-        context.insert("queue", &self.queue);
-        context.insert("cli_timeout", &self.cli_timeout);
-        context.insert("hdr_timeout", &self.hdr_timeout);
-        context.insert("src_timeout", &self.src_timeout);
-        context.insert("burst", &self.burst);
-        context.insert("src_pass", &self.src_pass);
-        context.insert("admin", &self.admin);
-        context.insert("admin_pass", &self.admin_pass);
-        context.insert("host", &self.host);
-        context.insert("port", &self.port);
-        context.insert("relay_on", &self.relay_on);
-        context.insert("relay_host", &self.relay_host);
-        context.insert("relay_port", &self.relay_port);
-        context.insert("relay_update_interval", &self.relay_update_interval);
-        context.insert("relay_user", &self.relay_user);
-        context.insert("relay_password", &self.relay_password);
-        context.insert("relay_demand", &self.relay_demand);
-        context
-    }
-}
-
-impl Icecast for IcecastTera {
     fn get_num_clients(&self) -> u16 {
         self.num_clients
     }

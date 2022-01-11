@@ -1,4 +1,5 @@
 pub trait Icecast {
+    fn get_path(&self) -> String;
     fn get_num_clients(&self) -> u16;
     fn get_num_sources(&self) -> i32;
     fn get_queue(&self) -> u128;

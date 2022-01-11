@@ -66,13 +66,11 @@ pub struct IcecastTerminal {
     relay_demand: String,
 }
 
-impl IcecastTerminal {
+impl Icecast for IcecastTerminal {
+
     fn get_path(&self) -> String {
         self.path.clone()
     }
-}
-
-impl Icecast for IcecastTerminal {
 
     fn get_num_clients(&self) -> u16 {
         self.num_clients

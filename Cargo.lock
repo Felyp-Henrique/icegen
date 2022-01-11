@@ -259,7 +259,6 @@ name = "icegen"
 version = "0.1.0"
 dependencies = [
  "clap",
- "serde",
  "tera",
 ]
 
