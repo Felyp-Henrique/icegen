@@ -8,7 +8,7 @@ pub struct EngineTera {
     icecast: dyn Icecast,
 }
 
-impl Engine<tera::Context, String> for EngineTera {
+impl Engine<tera::Context> for EngineTera {
     fn get_context(&self) -> tera::Context {
         let mut context = tera::Context::new();
         context.insert("num_clients", &self.icecast.get_num_clients());

@@ -1,56 +1,71 @@
-use crate::kernel::entities::*;
+pub use crate::kernel::entities::*;
+pub use clap::Parser;
 
-pub struct IcecastTera {
+#[derive(Parser)]
+pub struct NewTerminal {
+
+    #[clap(long)]
     path: String,
+
+    #[clap(long, default_value = "1000")]
     num_clients: u16,
+
+    #[clap(long, default_value = "1")]
     num_sources: i32,
+
+    #[clap(long, default_value = "524288")]
     queue: u128,
+
+    #[clap(long, default_value = "30")]
     cli_timeout: u16,
+
+    #[clap(long, default_value = "15")]
     hdr_timeout: u16,
+
+    #[clap(long, default_value = "10")]
     src_timeout: u16,
+
+    #[clap(long, default_value = "65535")]
     burst: u128,
+
+    #[clap(long, default_value = "hackme")]
     src_pass: String,
+
+    #[clap(long, default_value = "admin")]
     admin: String,
+
+    #[clap(long, default_value = "hackme")]
     admin_pass: String,
+
+    #[clap(long, default_value = "localhost")]
     host: String,
+
+    #[clap(long, default_value = "8000")]
     port: u32,
+
+    #[clap(long)]
     relay_on: bool,
+
+    #[clap(long, default_value = "127.0.0.1")]
     relay_host: String,
+
+    #[clap(long, default_value = "8001")]
     relay_port: u32,
+
+    #[clap(long, default_value = "120")]
     relay_update_interval: u32,
+
+    #[clap(long, default_value = "relay")]
     relay_user: String,
+
+    #[clap(long, default_value = "hackme")]
     relay_password: String,
+
+    #[clap(long, default_value = "1")]
     relay_demand: String,
 }
 
-impl IcecastTera {
-    fn new(path: String, icecast: &dyn Icecast) -> Self {
-        IcecastTera{
-            path: path.clone(),
-            num_clients: icecast.get_num_clients(),
-            num_sources: icecast.get_num_sources(),
-            queue: icecast.get_queue(),
-            cli_timeout: icecast.get_cli_timeout(),
-            hdr_timeout: icecast.get_hdr_timeout(),
-            src_timeout: icecast.get_src_timeout(),
-            burst: icecast.get_burst(),
-            src_pass: icecast.get_src_pass(),
-            admin: icecast.get_admin(),
-            admin_pass: icecast.get_admin_pass(),
-            host: icecast.get_host(),
-            port: icecast.get_port(),
-            relay_on: icecast.get_relay_on(),
-            relay_host: icecast.get_relay_host(),
-            relay_port: icecast.get_relay_port(),
-            relay_update_interval: icecast.get_relay_update_interval(),
-            relay_user: icecast.get_relay_user(),
-            relay_password: icecast.get_relay_password(),
-            relay_demand: icecast.get_relay_demand(),
-        }
-    }
-}
-
-impl Icecast for IcecastTera {
+impl Icecast for NewTerminal {
 
     fn get_path(&self) -> String {
         self.path.clone()

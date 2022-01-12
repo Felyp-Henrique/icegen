@@ -1,4 +1,4 @@
-pub trait Engine <C, R> {
+pub trait Engine <C> {
     fn get_context(&self) -> C;
-    fn get_document(&self, context: &C) -> R;
+    fn get_document(&self, context: &C) -> String;
 }
