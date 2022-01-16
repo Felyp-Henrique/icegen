@@ -14,12 +14,12 @@ type ManagerFile struct {
 	writer io.Writer
 }
 
-func NewManagerFile(path string, output string) (*ManagerFile, error) {
+func NewManagerFile(engine *EngineFile, path string, output string) (*ManagerFile, error) {
 	if file, err := os.OpenFile(output, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644); err != nil {
 		return nil, err
 	} else {
 		return &ManagerFile{
-			engine: NewEngineFile(),
+			engine: engine,
 			path:   path,
 			writer: file,
 		}, nil
