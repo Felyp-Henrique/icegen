@@ -13,6 +13,14 @@ jobs:
 
       - name: Compile
         run: make
+        with:
+          name: linux-release
+          path: ./
+
+      - name: Download a single artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: linux-release
   windows-release:
     runs-on: windows-latest
     steps:
@@ -28,3 +36,11 @@ jobs:
 
       - name: Compile
         run: go build ./...
+        with:
+          name: windows-release
+          path: ./
+
+      - name: Download a single artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: windows-release
