@@ -34,10 +34,10 @@ jobs:
           go-version: 1.17
 
       - name: Get Dependencies
-        run: go get ./...
+        run: go get
 
       - name: Compile
-        run: go build ./...
+        run: go build
 
       - name: Archive production artifacts
         uses: actions/upload-artifact@v2
@@ -59,11 +59,8 @@ jobs:
         with:
           go-version: 1.17
 
-      - name: Get Dependencies
-        run: go get ./...
-
       - name: Compile
-        run: go build ./...
+        run: make
 
       - name: Archive production artifacts
         uses: actions/upload-artifact@v2
