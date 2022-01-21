@@ -23,7 +23,8 @@ jobs:
       - name: Download a single artifact
         uses: actions/download-artifact@v2
         with:
-          name: linux
+          name: icegen
+          path: ./icegen
   windows-release:
     runs-on: windows-latest
     steps:
