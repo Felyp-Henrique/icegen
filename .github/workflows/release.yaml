@@ -13,14 +13,17 @@ jobs:
 
       - name: Compile
         run: make
+
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v2
         with:
-          name: linux-release
-          path: ./
+          name: icegen
+          path: ./linux
 
       - name: Download a single artifact
         uses: actions/download-artifact@v2
         with:
-          name: linux-release
+          name: linux
   windows-release:
     runs-on: windows-latest
     steps:
@@ -36,11 +39,14 @@ jobs:
 
       - name: Compile
         run: go build ./...
+
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v2
         with:
-          name: windows-release
-          path: ./
+          name: icegen
+          path: ./windows
 
       - name: Download a single artifact
         uses: actions/download-artifact@v2
         with:
-          name: windows-release
+          name: windows
