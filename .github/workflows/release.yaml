@@ -17,7 +17,7 @@ jobs:
       - name: Archive production artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: linux
+          name: icegen-linux
           path: icegen
           retention-days: 1
 
@@ -33,6 +33,9 @@ jobs:
         with:
           go-version: 1.17
 
+      - name: List of file
+        run: ls
+
       - name: Get Dependencies
         run: go get
 
@@ -42,7 +45,7 @@ jobs:
       - name: Archive production artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: windows
+          name: icegen-windows
           path: icegen
           retention-days: 1
 
@@ -65,7 +68,7 @@ jobs:
       - name: Archive production artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: macos
+          name: icegen-macos
           path: icegen
           retention-days: 1
 
