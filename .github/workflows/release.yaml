@@ -13,15 +13,12 @@ jobs:
 
       - name: Compile
         run: make
-        
-      - name: See files
-        run: ls
 
       - name: Archive production artifacts
         uses: actions/upload-artifact@v2
         with:
           name: icegen
-          path: ./linux
+          path: ./icegen
 
       - name: Download a single artifact
         uses: actions/download-artifact@v2
@@ -47,9 +44,9 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: icegen
-          path: ./windows
+          path: ./icegen
 
       - name: Download a single artifact
         uses: actions/download-artifact@v2
         with:
-          name: windows
+          name: icegen
