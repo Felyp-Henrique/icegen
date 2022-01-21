@@ -17,7 +17,7 @@ jobs:
       - name: Archive production artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: icegen
+          name: linux
           path: icegen
           retention-days: 1
 
@@ -42,7 +42,7 @@ jobs:
       - name: Archive production artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: icegen
+          name: windows
           path: icegen
           retention-days: 1
 
