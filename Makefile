@@ -7,6 +7,7 @@ update:
 clear:
 	@echo "cleaning up..."
 	@rm icegen || true
+	@rm icecast.xml || true
 
 build:
 	@echo "building..."

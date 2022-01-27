@@ -6,19 +6,23 @@ import (
 )
 
 type CreateParams struct {
-	usecases.Params
+	manager templates.Manager
 }
 
 func NewCreateParams() *CreateParams {
-	return &CreateParams{
-		Params: usecases.Params{},
-	}
+	return &CreateParams{}
 }
 
 func (p *CreateParams) GetManager() templates.Manager {
-	return p.Params["manager"].(templates.Manager)
+	return p.manager
 }
 
 func (p *CreateParams) SetManager(manager templates.Manager) {
-	p.Params["manager"] = manager
+	p.manager = manager
+}
+
+func (p *CreateParams) ToParams() usecases.Params {
+	return usecases.Params{
+		"manager": p.manager,
+	}
 }

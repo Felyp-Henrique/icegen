@@ -1,5 +1,13 @@
 name: Generate Release
-on: push
+on:
+  workflow_dispatch:
+    branches:
+      - master
+      - v0.1.0
+    inputs:
+      branch:
+        description: Branch to build
+        required: true
 jobs:
   linux-release:
     runs-on: ubuntu-latest
@@ -18,7 +26,9 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: icegen-linux
-          path: icegen
+          path: |
+            icegen
+            templates
           retention-days: 1
 
       - name: Download all workflow run artifacts
@@ -43,7 +53,9 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: icegen-windows
-          path: icegen.exe
+          path: |
+            icegen.exe
+            templates
           retention-days: 1
 
       - name: Download all workflow run artifacts
@@ -66,7 +78,9 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: icegen-macos
-          path: icegen
+          path: |
+            icegen
+            templates
           retention-days: 1
 
       - name: Download all workflow run artifacts

@@ -26,94 +26,36 @@ func CommandCreate() *cobra.Command {
 			icecast.SetAdminPass(cmd.Flag("adminpass").Value.String())
 			icecast.SetHost(cmd.Flag("host").Value.String())
 			icecast.SetPort(cmd.Flag("port").Value.String())
-			icecast.SetRelayHost(cmd.Flag("relayhost").Value.String())
-			icecast.SetRelayUpdateInterval(cmd.Flag("relayupdateinterval").Value.String())
-			icecast.SetRelayUser(cmd.Flag("relayuser").Value.String())
-			icecast.SetRelayPassword(cmd.Flag("relaypassword").Value.String())
-			icecast.SetRelayDemand(cmd.Flag("relaydemand").Value.String())
-			icecast.SetRelayPort(cmd.Flag("relayport").Value.String())
-			icecast.SetRelayMount(cmd.Flag("relaymount").Value.String())
-			icecast.SetRelayMountLocal(cmd.Flag("relaymountlocal").Value.String())
-			icecast.SetRelayOnDemand(cmd.Flag("relayondemand").Value.String())
-			icecast.SetRelayShoutcast(cmd.Flag("relayshoutcast").Value.String())
 
 			engine := templates.NewEngineFile()
-			engine.SetContext(icecast.Context)
+			engine.SetContext(icecast.ToContext())
 
-			manager, _ := templates.NewManagerFile(engine, "", "")
+			manager, err := templates.NewManagerFile(engine, cmd.Flag("dirtemplates").Value.String(), "icecast.xml")
+
+			if err != nil {
+				panic(err)
+			}
 
 			params := usecases.NewCreateParams()
 			params.SetManager(manager)
 
-			usecases.UseCaseCreate(params.Params)
+			usecases.UseCaseCreate(params.ToParams())
 		},
 	}
 
-	command.Flags().String("numclients", "", "")
-	command.MarkFlagRequired("numclients")
-
-	command.Flags().String("numsources", "", "")
-	command.MarkFlagRequired("numsources")
-
-	command.Flags().String("queue", "", "")
-	command.MarkFlagRequired("queue")
-
-	command.Flags().String("clitimeout", "", "")
-	command.MarkFlagRequired("clitimeout")
-
-	command.Flags().String("hdrtimeout", "", "")
-	command.MarkFlagRequired("hdrtimeout")
-
-	command.Flags().String("srctimeout", "", "")
-	command.MarkFlagRequired("srctimeout")
-
-	command.Flags().String("burst", "", "")
-	command.MarkFlagRequired("burst")
-
-	command.Flags().String("srcpass", "", "")
-	command.MarkFlagRequired("srcpass")
-
-	command.Flags().String("admin", "", "")
-	command.MarkFlagRequired("admin")
-
-	command.Flags().String("adminpass", "", "")
-	command.MarkFlagRequired("adminpass")
-
-	command.Flags().String("host", "", "")
-	command.MarkFlagRequired("host")
-
-	command.Flags().String("port", "", "")
-	command.MarkFlagRequired("port")
-
-	command.Flags().String("relayhost", "", "")
-	command.MarkFlagRequired("relayhost")
-
-	command.Flags().String("relayupdateinterval", "", "")
-	command.MarkFlagRequired("relayupdateinterval")
-
-	command.Flags().String("relayuser", "", "")
-	command.MarkFlagRequired("relayuser")
-
-	command.Flags().String("relaypassword", "", "")
-	command.MarkFlagRequired("relaypassword")
-
-	command.Flags().String("relaydemand", "", "")
-	command.MarkFlagRequired("relaydemand")
-
-	command.Flags().String("relayport", "", "")
-	command.MarkFlagRequired("relayport")
-
-	command.Flags().String("relaymount", "", "")
-	command.MarkFlagRequired("relaymount")
-
-	command.Flags().String("relaymountlocal", "", "")
-	command.MarkFlagRequired("relaymountlocal")
-
-	command.Flags().String("relayondemand", "", "")
-	command.MarkFlagRequired("relayondemand")
-
-	command.Flags().String("relayshoutcast", "", "")
-	command.MarkFlagRequired("relayshoutcast")
+	command.Flags().String("dirtemplates", "./templates", "Path of dir templates")
+	command.Flags().String("numclients", "1000", "Set the limit of connection in your server")
+	command.Flags().String("numsources", "1", "Set the limit of source mount in your server")
+	command.Flags().String("queue", "524288", "Set queue size")
+	command.Flags().String("clitimeout", "30", "Timeout of client")
+	command.Flags().String("hdrtimeout", "15", "Timeout of header")
+	command.Flags().String("srctimeout", "10", "Timeout of source")
+	command.Flags().String("burst", "65535", "Set burst size")
+	command.Flags().String("srcpass", "hackme", "Set the passoword of user source")
+	command.Flags().String("admin", "admin", "Set the name of administrator")
+	command.Flags().String("adminpass", "hackme", "Set the password of administrator")
+	command.Flags().String("host", "localhost", "Set the hostname of server")
+	command.Flags().String("port", "8000", "Set the port of server")
 
 	return command
 }

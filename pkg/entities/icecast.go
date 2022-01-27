@@ -36,34 +36,4 @@ type Icecast interface {
 
 	GetPort() string
 	SetPort(port string)
-
-	GetRelayHost() string
-	SetRelayHost(relayHost string)
-
-	GetRelayUpdateInterval() string
-	SetRelayUpdateInterval(relayUpdateInterval string)
-
-	GetRelayUser() string
-	SetRelayUser(relayUser string)
-
-	GetRelayPassword() string
-	SetRelayPassword(relayPassword string)
-
-	GetRelayDemand() string
-	SetRelayDemand(relayDemand string)
-
-	GetRelayPort() string
-	SetRelayPort(relayPort string)
-
-	GetRelayMount() string
-	SetRelayMount(relayMount string)
-
-	GetRelayMountLocal() string
-	SetRelayMountLocal(relayMountLocal string)
-
-	GetRelayOnDemand() string
-	SetRelayOnDemand(relayOnDemand string)
-
-	GetRelayShoutcast() string
-	SetRelayShoutcast(relayShoutcast string)
 }
