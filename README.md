@@ -4,6 +4,8 @@ This tool was created with the objective of facilitating the creation of *icecas
 
 The core of the application is simple and lightweight, the artifact generated in the compilation is small and therefore drastically reduces the size of the Docker image, unlike using Python or Ruby to generate the configurations. 
 
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/yellow_img.png)](https://www.buymeacoffee.com/felyphenrique)
+
 ## Usage
 
 For now it is only possible to create *icecast.xml* files through options, in the future maybe this will change and we will not only have this option, and maybe we can use **icegen** to manage the files and make tasks a little more difficult.
