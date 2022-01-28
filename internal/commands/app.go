@@ -12,6 +12,7 @@ func NewCommandApp() *cobra.Command {
 	app := CommandApp()
 	app.AddCommand(
 		CommandCreate(),
+		CommandVersion(),
 	)
 	return app
 }
