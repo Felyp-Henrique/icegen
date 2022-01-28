@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     branches:
       - master
-      - v0.1.0
+      - v0.1.0-beta
 jobs:
   linux-release:
     runs-on: ubuntu-latest
