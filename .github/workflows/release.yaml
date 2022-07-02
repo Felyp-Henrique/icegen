@@ -3,6 +3,7 @@ on:
   workflow_dispatch:
     branches:
       - master
+      - v0.1.0-beta
       - v0.1.1-beta
 jobs:
   release:
@@ -19,6 +20,8 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: icegen
-          path: icegen.zip
+          path: |
+            builds
+            templates
       - name: Download all workflow run artifacts
         uses: actions/download-artifact@v2

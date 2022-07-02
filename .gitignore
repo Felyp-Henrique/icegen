@@ -3,3 +3,4 @@ icecast.xml
 .vscode
 /builds
 **/icegen.zip
+/testes
