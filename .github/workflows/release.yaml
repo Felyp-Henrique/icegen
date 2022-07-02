@@ -5,76 +5,20 @@ on:
       - master
       - v0.1.0-beta
 jobs:
-  linux-release:
+  release:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-
       - name: Set up Go
         uses: actions/setup-go@v2
         with:
-          go-version: 1.17
-
+          go-version: 1.18.3
       - name: Compile
         run: make
-
       - name: Archive production artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: icegen-linux
-          path: |
-            icegen
-            templates
-
-      - name: Download all workflow run artifacts
-        uses: actions/download-artifact@v2
-  windows-release:
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Set up Go
-        uses: actions/setup-go@v2
-        with:
-          go-version: 1.17
-
-      - name: Get Dependencies
-        run: go get
-
-      - name: Compile
-        run: go build
-
-      - name: Archive production artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: icegen-windows
-          path: |
-            icegen.exe
-            templates
-
-      - name: Download all workflow run artifacts
-        uses: actions/download-artifact@v2
-
-  macos-release:
-    runs-on: macos-latest
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Set up Go
-        uses: actions/setup-go@v2
-        with:
-          go-version: 1.17
-
-      - name: Compile
-        run: make
-
-      - name: Archive production artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: icegen-macos
-          path: |
-            icegen
-            templates
-
+          name: icegen
+          path: icegen.zip
       - name: Download all workflow run artifacts
         uses: actions/download-artifact@v2
